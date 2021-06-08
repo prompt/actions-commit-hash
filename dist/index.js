@@ -3,6 +3,32 @@ require('./sourcemap-register.js');module.exports =
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 533:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CommitHash = void 0;
+const hashFormat = /^[a-f0-9]{40}$/;
+class CommitHash {
+    constructor(longCommitHash) {
+        if (!hashFormat.test(longCommitHash)) {
+            throw Error(`Input "${longCommitHash}" is not a valid full length commit hash.`);
+        }
+        this.hash = longCommitHash;
+    }
+    long() {
+        return this.hash;
+    }
+    short() {
+        return this.long().substr(0, 7);
+    }
+}
+exports.CommitHash = CommitHash;
+
+
+/***/ }),
+
 /***/ 109:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -28,10 +54,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
+const commit_hash_1 = __webpack_require__(533);
 async function run() {
     try {
-        const hash = core.getInput('commit');
-        core.setOutput('long', hash);
+        const commit = new commit_hash_1.CommitHash(core.getInput('commit'));
+        core.setOutput('long', commit.long());
+        core.setOutput('short', commit.short());
     }
     catch (error) {
         core.setFailed(error.message);

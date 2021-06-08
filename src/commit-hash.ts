@@ -1,4 +1,4 @@
-const hashFormat: RegExp = /^[a-f0-9]{40}$/
+const hashFormat = /^[a-f0-9]{40}$/
 
 export class CommitHash {
   private hash: string
