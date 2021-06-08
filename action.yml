@@ -1,0 +1,14 @@
+name: "Commit Hash"
+branding:
+  icon: "git-commit"
+  color: "yellow"
+description: "Output commit hash (short and long) with optional prefix"
+author: "Samuel Ryan <sam@samryan.co.uk>"
+inputs:
+  commit:
+    description: "Full, 40-character SHA-1 hash of a commit"
+    default: "${{ github.sha }}"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
