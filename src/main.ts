@@ -4,7 +4,7 @@ async function run(): Promise<void> {
   try {
     const hash: string = core.getInput('commit')
 
-    core.setOutput('long', hash);
+    core.setOutput('long', hash)
   } catch (error) {
     core.setFailed(error.message)
   }
