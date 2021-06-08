@@ -52,7 +52,7 @@ jobs:
 [`workflow_run`][events/workflow_run] events are handled by Workflows within the
 context of the main branch, therefore the `github.sha` context value does not
 represent the commit that triggered the Workflow and we must use the `head_sha`
-value on the event.
+value on the event instead.
 
 ```yaml
 on:
