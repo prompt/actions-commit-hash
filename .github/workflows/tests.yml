@@ -20,7 +20,7 @@ jobs:
           assertion: npm://@assertions/is-equal
           expected: "${{ github.sha }}"
           actual: ${{ steps.default.outputs.long }}
-      - id: explicit
+      - id: example
         uses: ./
         with:
           commit: 734713bc047d87bf7eac9674765ae793478c50d3
@@ -29,4 +29,15 @@ jobs:
         with:
           assertion: npm://@assertions/is-equal
           expected: "734713bc047d87bf7eac9674765ae793478c50d3"
-          actual: ${{ steps.explicit.outputs.long }}
+          actual: ${{ steps.example.outputs.long }}
+      - name: Test short commit hash is extracted from long
+        uses: pr-mpt/actions-assert@v1
+        with:
+          assertion: npm://@assertions/is-equal
+          expected: "734713b"
+          actual: ${{ steps.example.outputs.short }}
+      - id: invalid-input
+        uses: ./
+        continue-on-error: true
+        with:
+          commit: invalid-commit-hash
