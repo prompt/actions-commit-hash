@@ -36,3 +36,8 @@ jobs:
           assertion: npm://@assertions/is-equal
           expected: "734713b"
           actual: ${{ steps.example.outputs.short }}
+      - id: invalid-input
+        uses: ./
+        continue-on-error: true
+        with:
+          commit: invalid-commit-hash
