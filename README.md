@@ -4,7 +4,7 @@ A GitHub Action for using the long and short [hash of a commit][git/commits]
 &mdash; with an optional prefix.
 
 ```
-pr-mpt/actions-commit-hash@v0
+pr-mpt/actions-commit-hash@v1
 ```
 
 ## Inputs
@@ -38,7 +38,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v0
+        uses: pr-mpt/actions-commit-hash@v1
       - uses: docker/setup-buildx-action@v1
       - name: Build image for commit
         uses: docker/build-push-action@v2
@@ -68,7 +68,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v0
+        uses: pr-mpt/actions-commit-hash@v1
         with:
           commit: "${{ github.event.workflow_run.head_sha }}"
           prefix: "sha-"
