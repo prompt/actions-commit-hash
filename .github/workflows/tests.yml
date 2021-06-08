@@ -20,3 +20,13 @@ jobs:
           assertion: npm://@assertions/is-equal
           expected: "${{ github.sha }}"
           actual: ${{ steps.default.outputs.long }}
+      - id: explicit
+        uses: ./
+        with:
+          commit: 734713bc047d87bf7eac9674765ae793478c50d3
+      - name: Test commit hash is used when provided
+        uses: pr-mpt/actions-assert@v1
+        with:
+          assertion: npm://@assertions/is-equal
+          expected: "734713bc047d87bf7eac9674765ae793478c50d3"
+          actual: ${{ steps.explicit.outputs.long }}
