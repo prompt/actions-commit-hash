@@ -41,3 +41,20 @@ jobs:
         continue-on-error: true
         with:
           commit: "invalid-commit-hash"
+      - id: prefixed
+        uses: ./
+        with:
+          commit: "734713bc047d87bf7eac9674765ae793478c50d3"
+          prefix: "sha-"
+      - name: Test short is prefixed
+        uses: ./
+        with:
+          assertion: npm://@assertions/is-equal
+          expected: "sha-734713b"
+          actual: "${{ steps.prefixed.outputs.short }}"
+      - name: Test long is prefixed
+        uses: ./
+        with:
+          assertion: npm://@assertions/is-equal
+          expected: "sha-734713bc047d87bf7eac9674765ae793478c50d3"
+          actual: "${{ steps.prefixed.outputs.long }}"

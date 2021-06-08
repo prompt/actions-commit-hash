@@ -9,6 +9,16 @@ inputs:
     description: "Full, 40-character SHA-1 hash of a commit"
     default: "${{ github.sha }}"
     required: true
+  prefix:
+    description: "Optional prefix for `short` and `long`"
+    required: false
+outputs:
+  short:
+    description: "Short, 7-character hash of the commit with prefix"
+  long:
+    description: "Full, 40-character SHA-1 hash of commit with prefix"
+  hash:
+    description: "Original, 40-character SHA-1 hash received as `commit` input"
 runs:
   using: "node12"
   main: "dist/index.js"

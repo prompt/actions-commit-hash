@@ -58,8 +58,10 @@ const commit_hash_1 = __webpack_require__(533);
 async function run() {
     try {
         const commit = new commit_hash_1.CommitHash(core.getInput('commit'));
-        core.setOutput('long', commit.long());
-        core.setOutput('short', commit.short());
+        const prefix = core.getInput('prefix') || '';
+        core.setOutput('long', prefix + commit.long());
+        core.setOutput('short', prefix + commit.short());
+        core.setOutput('hash', commit.long());
     }
     catch (error) {
         core.setFailed(error.message);
