@@ -3,14 +3,13 @@
   "description": "Output commit hash (short and long) with optional prefix",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc",
+    "compile": "tsc",
     "format": "prettier --write **/*.ts",
-    "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt",
+    "package": "npm run compile && ncc build --source-map --license licenses.txt",
     "test": "jest",
     "style": "npm run format && npm run lint",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run style && npm run package && npm test"
   },
   "keywords": [
     "actions",

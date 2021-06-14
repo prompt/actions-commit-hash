@@ -1,0 +1,23 @@
+name: "Synchronise To Release Branch"
+
+on:
+  push:
+    branches:
+      - "main"
+
+env:
+  source: ${{ secrets.BRANCHES_SOURCE || 'main' }}
+  release: ${{ secrets.BRANCHES_RELEASE || 'release' }}
+
+jobs:
+  update-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: "${{ env.release }}"
+          fetch-depth: 0
+          ssh-key: "${{ secrets.COMMIT_KEY }}"
+      - uses: pr-mpt/actions-merge-branch@v1
+        with:
+          from: "origin/${{ env.source }}"
