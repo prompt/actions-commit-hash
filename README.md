@@ -7,6 +7,9 @@ A GitHub Action for using the long and short [hash of a commit][git/commits]
 pr-mpt/actions-commit-hash@v1
 ```
 
+:package: [Automatic Release Packaging](#automatic-release-packaging) is used by
+this action, please reference by tag or commit hash in your Workflows.
+
 ## Inputs
 
 All inputs are optional.
@@ -80,6 +83,25 @@ jobs:
           tags: ${{ steps.commit.outputs.short }}
 ```
 
+## Automatic Release Packaging
+
+Packaging (creation of `dist`) happens automatically when a new tag is created.
+Any reference to this Action in a Workflow must use a [tag][tags] (mutable) or
+the commit hash of a tag (immutable).
+
+```yaml
+✅ uses: pr-mpt/actions-commit-hash@v1
+✅ uses: pr-mpt/actions-commit-hash@v1.0.0
+✅ uses: pr-mpt/actions-commit-hash@09b3514b59b221704f212b2a353285e104e9009c
+❌ uses: pr-mpt/actions-commit-hash@main
+```
+
+The blog post
+[Package GitHub Actions automatically with GitHub Actions][blog/package-automatically]
+describes how this achieved.
+
 [git/commits]: https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
 [docker/build-push-action]: https://github.com/docker/build-push-action
 [events/workflow_run]: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
+[blog/package-automatically]: https://medium.com/prompt/package-github-actions-automatically-with-github-actions-a70b9f7bae4
+[tags]: https://github.com/pr-mpt/actions-commit-hash/tags
