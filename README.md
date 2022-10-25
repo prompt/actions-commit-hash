@@ -4,7 +4,7 @@ A GitHub Action for using the long and short [hash of a commit][git/commits]
 &mdash; with an optional prefix.
 
 ```
-pr-mpt/actions-commit-hash@v1
+pr-mpt/actions-commit-hash@v2
 ```
 
 :package: [Automatic Release Packaging](#automatic-release-packaging) is used by
@@ -14,18 +14,18 @@ this action, please reference by tag or commit hash in your Workflows.
 
 All inputs are optional.
 
-| ID | Description | Default | Examples |
-| :- | :---------- | :------ | :------- |
-| `commit` | Full, 40-character SHA-1 hash of the commit | `${{github.sha}}` | `734713bc047d87bf7eac9674765ae793478c50d3` |
-| `prefix` | Optional string prepended to `short` and `long` |  | `commit` `sha-` |
+| ID       | Description                                     | Default           | Examples                                   |
+| :------- | :---------------------------------------------- | :---------------- | :----------------------------------------- |
+| `commit` | Full, 40-character SHA-1 hash of the commit     | `${{github.sha}}` | `734713bc047d87bf7eac9674765ae793478c50d3` |
+| `prefix` | Optional string prepended to `short` and `long` |                   | `commit` `sha-`                            |
 
 ## Outputs
 
-| ID | Description | Examples |
-| :- | :---------- | :------ |
-| `short` | Short, 7-character hash of the commit with optional prefix | `734713b` `sha-734713b` |
-| `long` | Full, 40-character SHA-1 hash of the commit with optional prefix | `734713bc047d87bf7eac9674765ae793478c50d3` `sha-734713bc047d87bf7eac9674765ae793478c50d3` |
-| `hash` | Original, 40-character SHA-1 hash of the commit without prefix | `734713bc047d87bf7eac9674765ae793478c50d3` |
+| ID      | Description                                                      | Examples                                                                                  |
+| :------ | :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| `short` | Short, 7-character hash of the commit with optional prefix       | `734713b` `sha-734713b`                                                                   |
+| `long`  | Full, 40-character SHA-1 hash of the commit with optional prefix | `734713bc047d87bf7eac9674765ae793478c50d3` `sha-734713bc047d87bf7eac9674765ae793478c50d3` |
+| `hash`  | Original, 40-character SHA-1 hash of the commit without prefix   | `734713bc047d87bf7eac9674765ae793478c50d3`                                                |
 
 ## Examples
 
@@ -41,7 +41,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v1
+        uses: pr-mpt/actions-commit-hash@v2
       - uses: docker/setup-buildx-action@v1
       - name: Build image for commit
         uses: docker/build-push-action@v2
@@ -71,7 +71,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v1
+        uses: pr-mpt/actions-commit-hash@v2
         with:
           commit: "${{ github.event.workflow_run.head_sha }}"
           prefix: "sha-"
@@ -90,15 +90,15 @@ Any reference to this Action in a Workflow must use a [tag][tags] (mutable) or
 the commit hash of a tag (immutable).
 
 ```yaml
-✅ uses: pr-mpt/actions-commit-hash@v1
-✅ uses: pr-mpt/actions-commit-hash@v1.0.0
-✅ uses: pr-mpt/actions-commit-hash@09b3514b59b221704f212b2a353285e104e9009c
+✅ uses: pr-mpt/actions-commit-hash@v2
+✅ uses: pr-mpt/actions-commit-hash@v2.0.0
+✅ uses: pr-mpt/actions-commit-hash@01d19a83c242e1851c9aa6cf9625092ecd095d09
 ❌ uses: pr-mpt/actions-commit-hash@main
 ```
 
 The blog post
 [Package GitHub Actions automatically with GitHub Actions][blog/package-automatically]
-describes how this achieved.
+describes how this is achieved.
 
 [git/commits]: https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
 [docker/build-push-action]: https://github.com/docker/build-push-action
