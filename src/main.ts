@@ -10,7 +10,7 @@ async function run(): Promise<void> {
     core.setOutput('short', prefix + commit.short())
 
     core.setOutput('hash', commit.long())
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message)
   }
 }

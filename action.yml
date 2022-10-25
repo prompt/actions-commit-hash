@@ -20,5 +20,5 @@ outputs:
   hash:
     description: "Original, 40-character SHA-1 hash received as `commit` input"
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/index.js"
