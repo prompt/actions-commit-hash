@@ -4,7 +4,7 @@ A GitHub Action for using the long and short [hash of a commit][git/commits]
 &mdash; with an optional prefix.
 
 ```
-pr-mpt/actions-commit-hash@v2
+prompt/actions-commit-hash@v2
 ```
 
 :package: [Automatic Release Packaging](#automatic-release-packaging) is used by
@@ -41,7 +41,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v2
+        uses: prompt/actions-commit-hash@v2
       - uses: docker/setup-buildx-action@v1
       - name: Build image for commit
         uses: docker/build-push-action@v2
@@ -71,7 +71,7 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: pr-mpt/actions-commit-hash@v2
+        uses: prompt/actions-commit-hash@v2
         with:
           commit: "${{ github.event.workflow_run.head_sha }}"
           prefix: "sha-"
@@ -90,10 +90,10 @@ Any reference to this Action in a Workflow must use a [tag][tags] (mutable) or
 the commit hash of a tag (immutable).
 
 ```yaml
-✅ uses: pr-mpt/actions-commit-hash@v2
-✅ uses: pr-mpt/actions-commit-hash@v2.0.0
-✅ uses: pr-mpt/actions-commit-hash@01d19a83c242e1851c9aa6cf9625092ecd095d09
-❌ uses: pr-mpt/actions-commit-hash@main
+✅ uses: prompt/actions-commit-hash@v2
+✅ uses: prompt/actions-commit-hash@v2.0.0
+✅ uses: prompt/actions-commit-hash@01d19a83c242e1851c9aa6cf9625092ecd095d09
+❌ uses: prompt/actions-commit-hash@main
 ```
 
 The blog post
@@ -104,4 +104,4 @@ describes how this is achieved.
 [docker/build-push-action]: https://github.com/docker/build-push-action
 [events/workflow_run]: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
 [blog/package-automatically]: https://medium.com/prompt/package-github-actions-automatically-with-github-actions-a70b9f7bae4
-[tags]: https://github.com/pr-mpt/actions-commit-hash/tags
+[tags]: https://github.com/prompt/actions-commit-hash/tags
