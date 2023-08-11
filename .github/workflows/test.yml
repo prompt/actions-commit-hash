@@ -16,7 +16,7 @@ jobs:
       - id: default
         uses: ./
       - name: Test current commit hash is used by default
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/is-equal
           expected: "${{ github.sha }}"
@@ -26,13 +26,13 @@ jobs:
         with:
           commit: "734713bc047d87bf7eac9674765ae793478c50d3"
       - name: Test commit hash is used when provided
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/is-equal
           expected: "734713bc047d87bf7eac9674765ae793478c50d3"
           actual: "${{ steps.example.outputs.long }}"
       - name: Test short commit hash is extracted from long
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/is-equal
           expected: "734713b"
@@ -48,13 +48,13 @@ jobs:
           commit: "734713bc047d87bf7eac9674765ae793478c50d3"
           prefix: "sha-"
       - name: Test short is prefixed
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/is-equal
           expected: "sha-734713b"
           actual: "${{ steps.prefixed.outputs.short }}"
       - name: Test long is prefixed
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/is-equal
           expected: "sha-734713bc047d87bf7eac9674765ae793478c50d3"

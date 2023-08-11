@@ -18,6 +18,6 @@ jobs:
           ref: "${{ env.release }}"
           fetch-depth: 0
           ssh-key: "${{ secrets.COMMIT_KEY }}"
-      - uses: pr-mpt/actions-merge-branch@v1
+      - uses: prompt/actions-merge-branch@v1
         with:
           from: "origin/${{ env.source }}"
