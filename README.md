@@ -4,7 +4,7 @@ A GitHub Action for using the long and short [hash of a commit][git/commits]
 &mdash; with an optional prefix.
 
 ```
-prompt/actions-commit-hash@v2
+prompt/actions-commit-hash@v3
 ```
 
 :package: [Automatic Release Packaging](#automatic-release-packaging) is used by
@@ -41,10 +41,10 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: prompt/actions-commit-hash@v2
-      - uses: docker/setup-buildx-action@v1
+        uses: prompt/actions-commit-hash@v3
+      - uses: docker/setup-buildx-action@v3
       - name: Build image for commit
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ steps.commit.outputs.short }}
@@ -71,13 +71,13 @@ jobs:
     steps:
     steps:
       - id: commit
-        uses: prompt/actions-commit-hash@v2
+        uses: prompt/actions-commit-hash@v3
         with:
           commit: "${{ github.event.workflow_run.head_sha }}"
           prefix: "sha-"
-      - uses: docker/setup-buildx-action@v1
+      - uses: docker/setup-buildx-action@v3
       - name: Build image for commit
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ steps.commit.outputs.short }}
@@ -90,8 +90,8 @@ Any reference to this Action in a Workflow must use a [tag][tags] (mutable) or
 the commit hash of a tag (immutable).
 
 ```yaml
-✅ uses: prompt/actions-commit-hash@v2
-✅ uses: prompt/actions-commit-hash@v2.0.0
+✅ uses: prompt/actions-commit-hash@v3
+✅ uses: prompt/actions-commit-hash@v3.0.0
 ✅ uses: prompt/actions-commit-hash@01d19a83c242e1851c9aa6cf9625092ecd095d09
 ❌ uses: prompt/actions-commit-hash@main
 ```
