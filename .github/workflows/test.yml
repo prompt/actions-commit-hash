@@ -10,12 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - name: Build action on node v16
+        uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm install
       - run: npm run package
       - run: npm run test
+      - name: Test action on node v20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - id: default
         uses: ./
       - name: Test current commit hash is used by default
