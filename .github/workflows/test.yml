@@ -16,6 +16,9 @@ jobs:
       - run: npm install
       - run: npm run package
       - run: npm run test
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - id: default
         uses: ./
       - name: Test current commit hash is used by default
