@@ -10,8 +10,12 @@ async function run(): Promise<void> {
     core.setOutput('short', prefix + commit.short())
 
     core.setOutput('hash', commit.long())
-  } catch (error: any) {
-    core.setFailed(error.message)
+  } catch (error: unknown) {
+    core.setFailed(
+      error instanceof Error
+        ? error.message
+        : 'an unknown error occurred when running actions-commit-hash'
+    )
   }
 }
 
